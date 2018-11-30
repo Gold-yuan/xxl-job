@@ -36,8 +36,8 @@ public class JobInfoController {
 	private XxlJobGroupDao xxlJobGroupDao;
 	@Resource
 	private XxlJobService xxlJobService;
-    @Resource
-    private XxlJobInfoDao xxlJobInfoDao;
+	@Resource
+	private XxlJobInfoDao xxlJobInfoDao;
 
 	@RequestMapping
 	public String index(Model model, @RequestParam(required = false, defaultValue = "-1") int jobGroup) {
@@ -117,7 +117,7 @@ public class JobInfoController {
 		if (jobsByDesc != null && jobsByDesc.size() > 0) {
 			JobTriggerPoolHelper.trigger(jobsByDesc.get(0).getId(), TriggerTypeEnum.MANUAL, -1, null, executorParam);
 		} else {
-			return new ReturnT<String>("未找到任务");
+			return new ReturnT<String>(500, "未找到任务");
 		}
 		return ReturnT.SUCCESS;
 	}
